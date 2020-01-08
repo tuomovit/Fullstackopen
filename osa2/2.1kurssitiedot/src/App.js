@@ -1,65 +1,6 @@
 import React from 'react';
 import './App.css';
-
-
-const Header = ({ course }) => (
-  <div>
-   <h1>{course.name}</h1>
-  </div>
-)
-
-
-// En saanut tätä .map funktiolla tunninkaan jälkeen toimimaan, joten päätin tehdä forilla.
-// Pelittää testailun mukaan samalla tavalla vaikka kurssimäärää kasvattaisi
-const Content = ({ course }) => {
-  
-  var courses = [];
-  
-  for (let x in course) {
-    courses.push(<h2 key={x}>{course[x].name}</h2>)
-
-
-    for (let a in course[x].parts) {
-    courses.push(<p key={x+a}>{course[x].parts[a].name}</p>)
-    
-    }
-
-    var summa = (course[x].parts.map(part => part.exercises).reduce((id, currentValue) => id + currentValue )); 
-    courses.push(<b key={x + summa}>Total of {summa} exercises</b>)
-  
-  }
-
-  console.log(courses)
-  
-
-return (
-  <div>
-  <ul>
- {courses}
-
-
-
-
-  </ul> 
-  </div>
-)
-}
-
-const Course = ({course}) => {
-
-return (
-
-  <div>
-    <Header course={course} />
-    <Content course={course} />
-  </div>
-  )
-}
-
-
-
-
-
+import Course from "./components/Course";
 
 
 
@@ -107,9 +48,13 @@ const App = () => {
     }
   ]
 
+   const kurssilista = courses.map((course) => {
+      return (<Course key={course.name} course={course} />);
+    });
+
   return (
     <div>
-      <Course course={courses} />
+      {kurssilista}
     </div>
   )
 }

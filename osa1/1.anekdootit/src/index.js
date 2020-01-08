@@ -10,10 +10,9 @@ const App = (props) => {
   
   const vaihda = () => {
 
-    var min=0; 
-    var max=anecdotes.length;  
-    var random = 
-    Math.floor(Math.random() * (+max - +min)) + +min; 
+    var min = 0; 
+    var max = anecdotes.length;  
+    var random = Math.floor(Math.random() * (max - min)) +min; 
       
     setSelected(random)
     console.log("valittu" + selected)
@@ -35,10 +34,10 @@ const App = (props) => {
     var max = 0;  
     var indeksi = 0;
     var i = 0;
-    var len = votes.length;
+    var length = votes.length;
     
 
-for (; i < len; ) {
+for (; i < length; ) {
   
   if (votes[i] > max){
     max = votes[i]
